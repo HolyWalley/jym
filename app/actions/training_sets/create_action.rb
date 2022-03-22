@@ -16,7 +16,14 @@ module TrainingSets
 
       training_set = create_set.call(**permitted_params, training_id:)
 
-      [200, { "Content-Type" => "application/json" }, [training_set.to_h.to_json]]
+      [
+        200,
+        {
+          "Content-Type" => "application/json",
+          "Access-Control-Allow-Origin" => "*"
+        },
+        [training_set.to_h.to_json]
+      ]
     end
   end
 end

@@ -5,6 +5,9 @@ module Trainings
     include Import[create_training: "trainings.create"]
 
     def call(env)
+      puts "#" * 90
+      puts self
+      puts "#" * 90
       request = Rack::Request.new(env)
       body = request.body.read
       body_parsed = JSON.parse(body, symbolize_names: true)
@@ -13,7 +16,14 @@ module Trainings
 
       training = create_training.call(**permitted_params)
       # parse operation response and change response
-      [200, { "Content-Type" => "application/json" }, [training.to_h.to_json]]
+      [
+        200,
+        {
+          "Content-Type" => "application/json",
+          "Access-Control-Allow-Origin" => "*"
+        },
+        [training.to_h.to_json]
+      ]
     end
   end
 end
