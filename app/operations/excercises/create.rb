@@ -9,7 +9,7 @@ module Excercises
     option :excercise_model, default: -> { Excercise }
 
     def call(params)
-      excercise = excercise_model.build(**params)
+      excercise = excercise_model.new(**params)
       excercise_repository.persist(excercise)
     end
   end

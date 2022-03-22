@@ -11,9 +11,9 @@ module Trainings
 
       permitted_params = body_parsed.fetch(:training).slice(:name)
 
-      training = Trainings::Create.new.call(**permitted_params)
+      training = create_training.call(**permitted_params)
       # parse operation response and change response
-      [200, { 'Content-Type' => 'application/json' }, [training.to_h.to_json]]
+      [200, { "Content-Type" => "application/json" }, [training.to_h.to_json]]
     end
   end
 end

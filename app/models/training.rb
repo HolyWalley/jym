@@ -10,10 +10,6 @@ Training = Struct.new(:id, :name, :started_at, :finished_at, :sets, keyword_init
     new({ id: nil, name:, started_at:, sets: [], finished_at: nil })
   end
 
-  def log_set(reps:, weight:, excercise:)
-    sets << TrainingSet.build({ reps:, weight:, excercise:, training: self })
-  end
-
   def finish
     self.finished_at = DateTime.now
   end
